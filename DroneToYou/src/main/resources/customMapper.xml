@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mjcbrothers.dronetoyou.custom.CustomMapper">
+	<insert id="regSurvey">
+		INSERT INTO dronetou_survey 
+    	(ds_no, ds_writer, ds_wingsize, ds_wingcount, ds_purpose, ds_required, ds_battery, ds_bodysize, ds_blueprint, ds_painting) 
+    	VALUES 
+    	(dronetou_survey_seq.NEXTVAL, #{ds_writer}, #{ds_wingsize}, #{ds_wingcount}, #{ds_purpose}, #{ds_required}, #{ds_battery}, #{ds_bodysize}, #{ds_blueprint}, #{ds_painting})
+	</insert>
+	<insert id="regPartIn">
+		INSERT INTO dronetou_partin 
+    	(dp_no, dp_writer, dp_purpose, dp_model, dp_color, dp_drawing, dp_quantity, dp_material, dp_details) 
+    	VALUES 
+    	(dronetou_survey_seq.NEXTVAL, #{dp_writer}, #{dp_purpose}, #{dp_model}, #{dp_color}, #{dp_drawing}, #{dp_quantity}, #{dp_material}, #{dp_details})
+	</insert>
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mjcbrothers.dronetoyou.c2c.C2CMapper">
+	<insert id="regC2C">
+   		INSERT INTO dronetou_c2c 
+    	(dc_no, dc_txt, dc_writer, dc_cate, dc_title, dc_interval, dc_date, dc_photo1) 
+    	VALUES 
+    	(dronetou_c2c_seq.NEXTVAL, #{dc_txt}, #{dc_writer}, #{dc_cate}, #{dc_title}, #{dc_interval}, SYSDATE, #{dc_photo1})
+	</insert>
+	<select id="get" parameterType="com.mjcbrothers.dronetoyou.c2c.C2CSelector" resultType="com.mjcbrothers.dronetoyou.c2c.C2C">
+		select dc_no, dc_txt, dc_date, dc_writer, dc_photo1, dc_cate, dc_title, dc_interval from 
+				(select dc_no, dc_txt, dc_date, dc_writer, dc_photo1, dc_cate, dc_title, dc_interval 
+				from (select rownum as rn, dc_no, dc_txt, dc_date, dc_writer, dc_photo1, dc_cate, dc_title, dc_interval from 
+				(select * from dronetou_c2c where dc_writer like '%'||#{search}||'%' or dc_title like '%'||#{search}||'%' order by dc_date desc)) where rn &gt;= #{start} and rn &lt;= #{end}) order by dc_date desc
+	</select>
+	<select id="getC2CCount" parameterType="com.mjcbrothers.dronetoyou.c2c.C2CSelector" resultType="java.lang.Integer">
+		select count(*) from dronetou_c2c where dc_title like '%'||#{search}||'%' or dc_writer like '%'||#{search}||'%'
+	</select>
+	<delete id="delete" parameterType="com.mjcbrothers.dronetoyou.c2c.C2CMapper">
+		delete from dronetou_c2c where dc_no = #{dc_no}
+	</delete>
+	<update id="update" parameterType="com.mjcbrothers.dronetoyou.c2c.C2C">
+		update dronetou_c2c set dc_title = #{dc_title}, dc_txt = #{dc_txt}, dc_interval = #{dc_interval}, dc_photo1 = #{dc_photo1} where dc_no = #{dc_no}
+	</update>
+	<insert id="submitRequest">
+   		INSERT INTO dronetou_c2c_request
+    	(dcr_no, dcr_txt, dcr_writer, dcr_responser) 
+    	VALUES 
+    	(dronetou_c2c_request_seq.NEXTVAL, #{dcr_txt}, #{dcr_writer}, #{dcr_responser})
+	</insert>
+	<select id="getSubmitRequest" parameterType="com.mjcbrothers.dronetoyou.c2c.C2CRequest" resultType="com.mjcbrothers.dronetoyou.c2c.C2CRequest">
+		select * from dronetou_c2c_request where dcr_responser=#{dcr_responser}
+	</select>
+</mapper>
