@@ -38,6 +38,7 @@
 :computer:BackEnd:computer:<br/>
 ![로고명](https://img.shields.io/badge/Spring-6DB33F.svg?&style=for-the-badge&logo=spring&logoColor=white)
 ![로고명](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+JDK Version : 1.8.0_332
 ![로고명](https://img.shields.io/badge/Oracle-F80000.svg?&style=for-the-badge&logo=Oracle&logoColor=white)
 ![로고명](https://img.shields.io/badge/ECLIPSE%20IDE-2C2255.svg?&style=for-the-badge&logo=eclipseide&logoColor=#2C2255)<br/><br/>
 :art:FrontEnd:art:<br/>
